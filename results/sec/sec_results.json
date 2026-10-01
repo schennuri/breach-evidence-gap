@@ -1,0 +1,240 @@
+{
+  "flow": {
+    "filings": 206,
+    "companies": 139,
+    "item_1_05_filings": 60,
+    "item_8_01_filings": 146,
+    "incident_first_filings": 68,
+    "update_filings": 26,
+    "excluded_filings": 112,
+    "incidents": 68,
+    "incidents_ever_item_1_05": 40
+  },
+  "incidents": {
+    "n": 68,
+    "env": {
+      "UND": 44,
+      "ONPREM": 18,
+      "CLOUD": 6
+    },
+    "determinable": 24,
+    "determinable_share": 0.353,
+    "determinable_ci95": [
+      0.25,
+      0.472
+    ],
+    "root_cause": {
+      "PHYSICAL": 0,
+      "THIRD_PARTY": 10,
+      "INSIDER": 3,
+      "UNPATCHED": 1,
+      "MISCONFIG": 0,
+      "CREDENTIAL": 0,
+      "OTHER": 54
+    },
+    "root_cause_stated": 14,
+    "root_cause_stated_share": 0.206,
+    "root_by_env": {
+      "CLOUD": {
+        "OTHER": 3,
+        "THIRD_PARTY": 3
+      },
+      "ONPREM": {
+        "OTHER": 17,
+        "THIRD_PARTY": 1
+      },
+      "UND": {
+        "OTHER": 34,
+        "THIRD_PARTY": 6,
+        "INSIDER": 3,
+        "UNPATCHED": 1
+      }
+    }
+  },
+  "incidents_alt_order": {
+    "PHYSICAL": 0,
+    "THIRD_PARTY": 7,
+    "INSIDER": 3,
+    "UNPATCHED": 2,
+    "MISCONFIG": 0,
+    "CREDENTIAL": 2,
+    "OTHER": 54
+  },
+  "events": {
+    "n": 65,
+    "env": {
+      "UND": 43,
+      "ONPREM": 18,
+      "CLOUD": 4
+    },
+    "determinable": 22,
+    "determinable_share": 0.338,
+    "determinable_ci95": [
+      0.235,
+      0.46
+    ],
+    "root_cause": {
+      "PHYSICAL": 0,
+      "THIRD_PARTY": 7,
+      "INSIDER": 3,
+      "UNPATCHED": 1,
+      "MISCONFIG": 0,
+      "CREDENTIAL": 0,
+      "OTHER": 54
+    },
+    "root_cause_stated": 11,
+    "root_cause_stated_share": 0.169,
+    "root_by_env": {
+      "CLOUD": {
+        "OTHER": 3,
+        "THIRD_PARTY": 1
+      },
+      "ONPREM": {
+        "OTHER": 17,
+        "THIRD_PARTY": 1
+      },
+      "UND": {
+        "OTHER": 34,
+        "THIRD_PARTY": 5,
+        "INSIDER": 3,
+        "UNPATCHED": 1
+      }
+    }
+  },
+  "events_alt_order": {
+    "PHYSICAL": 0,
+    "THIRD_PARTY": 4,
+    "INSIDER": 3,
+    "UNPATCHED": 2,
+    "MISCONFIG": 0,
+    "CREDENTIAL": 2,
+    "OTHER": 54
+  },
+  "vs_vcdb_rule_B": {
+    "vcdb_events": 201,
+    "determinable": {
+      "sec": [
+        22,
+        65
+      ],
+      "vcdb": [
+        56,
+        201
+      ],
+      "fisher_p": 0.35,
+      "sec_ci95": [
+        0.235,
+        0.46
+      ],
+      "vcdb_ci95": [
+        0.221,
+        0.344
+      ]
+    },
+    "cloud_share_of_determinable": {
+      "sec": [
+        4,
+        22
+      ],
+      "vcdb": [
+        36,
+        56
+      ],
+      "fisher_p": 0.00033,
+      "sec_ci95": [
+        0.073,
+        0.385
+      ],
+      "vcdb_ci95": [
+        0.512,
+        0.755
+      ]
+    },
+    "root_cause_stated": {
+      "sec": [
+        11,
+        65
+      ],
+      "vcdb": [
+        108,
+        201
+      ],
+      "fisher_p": 1.3e-07,
+      "sec_ci95": [
+        0.097,
+        0.278
+      ],
+      "vcdb_ci95": [
+        0.468,
+        0.605
+      ]
+    },
+    "misconfiguration": {
+      "sec": [
+        0,
+        65
+      ],
+      "vcdb": [
+        45,
+        201
+      ],
+      "fisher_p": 1.5e-06,
+      "sec_ci95": [
+        0.0,
+        0.056
+      ],
+      "vcdb_ci95": [
+        0.172,
+        0.286
+      ]
+    }
+  },
+  "costs": {
+    "incidents_with_dollar_figure": 7,
+    "incidents_mentioning_unquantified_expense": 2,
+    "items": [
+      {
+        "company": "loanDepot, Inc.",
+        "low": 12000000,
+        "high": 17000000,
+        "what": "Q1 2024 expenses net of insurance"
+      },
+      {
+        "company": "KEY TRONIC CORP",
+        "low": 2300000,
+        "high": 2300000,
+        "what": "plus ~$15M revenue not fulfilled in quarter"
+      },
+      {
+        "company": "iLearningEngines, Inc.",
+        "low": 250000,
+        "high": 250000,
+        "what": "misdirected wire, not recovered"
+      },
+      {
+        "company": "NIOCORP DEVELOPMENTS LTD",
+        "low": 500000,
+        "high": 500000,
+        "what": "misdirected payments, recovery uncertain"
+      },
+      {
+        "company": "Coinbase Global, Inc.",
+        "low": 180000000,
+        "high": 400000000,
+        "what": "preliminary estimate, remediation and customer reimbursement"
+      },
+      {
+        "company": "DATA I/O CORP",
+        "low": 180000,
+        "high": 180000,
+        "what": "Q3 2025 remediation expenses"
+      },
+      {
+        "company": "Coupang, Inc.",
+        "low": 1200000000,
+        "high": 1200000000,
+        "what": "customer compensation vouchers (~1.685T won)"
+      }
+    ]
+  }
+}

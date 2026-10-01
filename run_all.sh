@@ -39,4 +39,7 @@ python3 src/spi_sensitivity.py | tee results/spi_sensitivity.txt
 echo "== 7. Data-informed SPI weights"
 python3 src/spi_data_weights.py | tee results/spi_data_weights.txt
 
+echo "== 8. SEC Form 8-K incidents (hand-coded; collected with src/sec_8k_collect.py)"
+python3 src/sec_analysis.py
+
 echo "Done. Outputs are in results/."

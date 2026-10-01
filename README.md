@@ -18,30 +18,33 @@ pip install -r requirements.txt     # numpy, scipy
 
 | Step | Script | What it does | Outputs |
 |---|---|---|---|
-| 1 | `src/vcdb_extract.py` | Applies the inclusion criteria (Table III), the infrastructure rules (Table IV) and root-cause precedence; merges campaigns by the **automatic rule (A)** | `results/automatic/` |
+| 1 | `src/vcdb_extract.py` | Applies the inclusion criteria (Table I), the infrastructure rules (Table II) and root-cause precedence; merges campaigns by the **automatic rule (A)** | `results/automatic/` |
 | 2 | `src/vcdb_extract.py --keep-campaigns` | Same, keeping one row per victim | `results/victims/` |
 | 3 | `src/hand_merge.py` | Merges the four named campaigns by the **hand rule (B)** and applies their hand codes | `results/hand/events_hand.csv`, `results/hand/campaigns.csv` |
 | 4 | `src/draw_sample.py` | Redraws the stratified 60-event sample (seed 2026) and checks it matches the coded sheet | `results/sample_ids.json` |
 | 5 | `src/analysis.py` | Permutation χ² tests, Cramér's V, Cohen's κ, Wilson intervals, alternative ordering, impact-data counts | `results/analysis_results.json`, `results/analysis_log.txt` |
 | 6 | `src/spi_sensitivity.py` | SPI composites, one-at-a-time, break-even and Dirichlet weight sensitivity | `results/spi_sensitivity.txt` |
 | 7 | `src/spi_data_weights.py` | SPI weights derived from observed root-cause frequencies | `results/spi_data_weights.txt` |
+| 8 | `src/sec_analysis.py` | Summarizes the hand-coded SEC Form 8-K incidents and compares them with VCDB | `results/sec/` |
 
 ## Where each result in the paper comes from
 
 | Paper | Source |
 |---|---|
-| Screening counts, Fig. 2 | `results/automatic/screening_flow.csv` |
-| Records by year, Fig. 3 | `results/automatic/coding_sheet.csv` (`year`) and the VCDB snapshot |
-| Event vs victim counting, Fig. 4 | `results/automatic/coding_sheet.csv` (`auto_infra`, `campaign_size`) |
-| Root causes, Fig. 5; Table VII | `results/analysis_results.json` (`A_auto_order`, `B_hand_order`) |
-| Named campaigns, Table V | `results/hand/campaigns.csv` |
-| Hand coding, κ, Wilson CI (Section V.C) | `results/analysis_results.json` (`sample60_*`, `all162_*`) |
-| Environment × root cause, Fig. 6; Table VI | `results/analysis_results.json` (`*_table`, `*_test`) |
-| Impact data (Section V.G) | `results/analysis_results.json` (`n_*`) |
-| Table I, Fig. 1, Fig. 7, Table VIII | `results/spi_sensitivity.txt` |
-| Table II | `results/spi_data_weights.txt` |
+| Screening counts (Section IV-A), Fig. 1 | `results/automatic/screening_flow.csv` |
+| Records by year, Fig. 2 | `results/automatic/coding_sheet.csv` (`year`) and the VCDB snapshot |
+| Event vs victim counting, Fig. 3 | `results/automatic/coding_sheet.csv` (`auto_infra`, `campaign_size`) |
+| Named campaigns, Table III | `results/hand/campaigns.csv` |
+| Hand coding, κ, Wilson CI (Section IV-C) | `results/analysis_results.json` (`sample60_*`, `all162_*`) |
+| Root causes (Section IV-D), Fig. 4 | `results/analysis_results.json` (`A_auto_order`, `B_hand_order`) |
+| Environment × root cause (Section IV-E), Fig. 5, Table IV | `results/analysis_results.json` (`*_table`, `*_test`) |
+| Alternative ordering (Section IV-F), Table V | `results/analysis_results.json` (`*_order`) |
+| Impact data (Section IV-G) | `results/analysis_results.json` (`n_*`) |
+| SEC Form 8-K disclosures (Section IV-H), Table VI | `results/sec/sec_results.json`, `results/sec/sec_summary.txt` |
+| SPI scores and sensitivity (Appendix A), Tables VII and IX, Figs. 6 and 7 | `results/spi_sensitivity.txt` |
+| Data-informed SPI weights (Appendix A), Table VIII | `results/spi_data_weights.txt` |
 
-Confidence intervals and power for the misconfiguration shares (Section V.E) come from `src/power.py`, written to `results/power.txt`.
+Confidence intervals and power for the misconfiguration shares (Section IV-E) come from `src/power.py`, written to `results/power.txt`.
 
 ## Hand-coded data
 
@@ -55,15 +58,26 @@ Campaign attribution rules are in `src/hand_merge.py`. Five victims of the 2025 
 
 `data/second_coder/` holds a codebook and a blank, shuffled sheet of the 162 hand-coded events for an independent second coder. `src/kappa.py` compares the two coders and lists disagreements for adjudication.
 
-## SEC 8-K extension (in progress)
+## SEC Form 8-K incidents
 
-`src/sec_8k_collect.py` collects Form 8-K cybersecurity incident disclosures from December 18, 2023 (when Item 1.05 took effect) to December 31, 2025, from SEC EDGAR full-text search. It writes a coding sheet with the incident text and keyword hints but no codes. SEC blocks many cloud and proxy networks, so run it from an ordinary connection:
+A second source: cybersecurity incident disclosures that U.S. public companies filed on Form 8-K between December 18, 2023 (when Item 1.05 took effect) and December 31, 2025.
+
+| File | Contents |
+|---|---|
+| `src/sec_8k_collect.py` | Collector. Queries EDGAR full-text search for Item 1.05 filings and Item 8.01 filings that mention a cybersecurity incident, then downloads each filing's text |
+| `data/sec/sec_8k_filings.csv` | Collector output used in the paper: 206 filings from 139 companies |
+| `data/sec/sec_screening.csv` | One row per filing: first disclosure of an incident, update of an earlier incident, or excluded (with the reason) |
+| `data/sec/sec_incident_codes.csv` | One row per incident (68), hand-coded with the same codebook as VCDB: environment, root cause, alternative-order root cause, campaign, text basis, and any dollar figure disclosed |
+
+Most Item 8.01 hits are not incidents: the search phrase appears in the risk-factor boilerplate of dividend, offering and merger announcements. `sec_screening.csv` records every such exclusion.
+
+SEC blocks many cloud and proxy networks, so the collector must run from an ordinary connection:
 
 ```bash
 python3 src/sec_8k_collect.py --ua "Your Name your@email.com" --out data/sec/sec_8k_filings.csv
 ```
 
-The SEC data are not yet part of the reported results.
+EDGAR's index changes over time, so a fresh run will not return exactly the same 206 filings. `run_all.sh` analyzes the committed file.
 
 ## Notes on reproducibility
 

@@ -1,0 +1,32 @@
+Filings 206 from 139 companies (60 Item 1.05, 146 Item 8.01)
+  incidents 68, update filings 26, excluded 112
+  incidents ever filed under Item 1.05: 40
+
+incidents: n=68  env {'UND': 44, 'ONPREM': 18, 'CLOUD': 6}
+  environment determinable 24/68 = 35% (95% CI 25%-47%)
+  root cause {'PHYSICAL': 0, 'THIRD_PARTY': 10, 'INSIDER': 3, 'UNPATCHED': 1, 'MISCONFIG': 0, 'CREDENTIAL': 0, 'OTHER': 54}
+  alternative order {'PHYSICAL': 0, 'THIRD_PARTY': 7, 'INSIDER': 3, 'UNPATCHED': 2, 'MISCONFIG': 0, 'CREDENTIAL': 2, 'OTHER': 54}
+  cause stated 14/68 = 21%
+  root cause by environment {'CLOUD': {'OTHER': 3, 'THIRD_PARTY': 3}, 'ONPREM': {'OTHER': 17, 'THIRD_PARTY': 1}, 'UND': {'OTHER': 34, 'THIRD_PARTY': 6, 'INSIDER': 3, 'UNPATCHED': 1}}
+
+events: n=65  env {'UND': 43, 'ONPREM': 18, 'CLOUD': 4}
+  environment determinable 22/65 = 34% (95% CI 24%-46%)
+  root cause {'PHYSICAL': 0, 'THIRD_PARTY': 7, 'INSIDER': 3, 'UNPATCHED': 1, 'MISCONFIG': 0, 'CREDENTIAL': 0, 'OTHER': 54}
+  alternative order {'PHYSICAL': 0, 'THIRD_PARTY': 4, 'INSIDER': 3, 'UNPATCHED': 2, 'MISCONFIG': 0, 'CREDENTIAL': 2, 'OTHER': 54}
+  cause stated 11/65 = 17%
+  root cause by environment {'CLOUD': {'OTHER': 3, 'THIRD_PARTY': 1}, 'ONPREM': {'OTHER': 17, 'THIRD_PARTY': 1}, 'UND': {'OTHER': 34, 'THIRD_PARTY': 5, 'INSIDER': 3, 'UNPATCHED': 1}}
+
+SEC events vs VCDB events (hand rule B), Fisher exact test:
+  determinable: SEC 22/65 = 34%  VCDB 56/201 = 28%  p = 0.35
+  cloud_share_of_determinable: SEC 4/22 = 18%  VCDB 36/56 = 64%  p = 0.00033
+  root_cause_stated: SEC 11/65 = 17%  VCDB 108/201 = 54%  p = 1.3e-07
+  misconfiguration: SEC 0/65 = 0%  VCDB 45/201 = 22%  p = 1.5e-06
+
+Dollar figures disclosed for 7 incidents:
+  loanDepot, Inc.: $12,000,000-$17,000,000 (Q1 2024 expenses net of insurance)
+  KEY TRONIC CORP: $2,300,000 (plus ~$15M revenue not fulfilled in quarter)
+  iLearningEngines, Inc.: $250,000 (misdirected wire, not recovered)
+  NIOCORP DEVELOPMENTS LTD: $500,000 (misdirected payments, recovery uncertain)
+  Coinbase Global, Inc.: $180,000,000-$400,000,000 (preliminary estimate, remediation and customer reimbursement)
+  DATA I/O CORP: $180,000 (Q3 2025 remediation expenses)
+  Coupang, Inc.: $1,200,000,000 (customer compensation vouchers (~1.685T won))
