@@ -5,6 +5,10 @@ Replication package for the paper *Where Do Enterprise Breaches Happen? Cloud, O
 The package reproduces every number, table and figure in the paper from a pinned snapshot of the
 [VERIS Community Database (VCDB)](https://github.com/vz-risk/VCDB). One command runs everything in under a minute.
 
+## Paper
+
+The current version of the paper is in [`paper/Where_Do_Enterprise_Breaches_Happen.pdf`](paper/Where_Do_Enterprise_Breaches_Happen.pdf).
+
 ## Quick start
 
 ```bash
@@ -67,6 +71,7 @@ A second source: cybersecurity incident disclosures that U.S. public companies f
 | `src/sec_8k_collect.py` | Collector. Queries EDGAR full-text search for Item 1.05 filings and Item 8.01 filings that mention a cybersecurity incident, then downloads each filing's text |
 | `data/sec/sec_8k_filings.csv` | Collector output used in the paper: 206 filings from 139 companies |
 | `data/sec/sec_screening.csv` | One row per filing: first disclosure of an incident, update of an earlier incident, or excluded (with the reason) |
+| `results/sec/SEC_8K_incidents_vs_VCDB.xlsx` | The SEC results as a workbook: summary and Table VI (formulas over the codes), incidents, disclosed costs, judgment calls to review, and the screening log |
 | `data/sec/sec_incident_codes.csv` | One row per incident (68), hand-coded with the same codebook as VCDB: environment, root cause, alternative-order root cause, campaign, text basis, and any dollar figure disclosed |
 
 Most Item 8.01 hits are not incidents: the search phrase appears in the risk-factor boilerplate of dividend, offering and merger announcements. `sec_screening.csv` records every such exclusion.
