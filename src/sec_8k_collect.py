@@ -106,6 +106,7 @@ def main():
     ap.add_argument("--out", default="data/sec/sec_8k_filings.csv")
     ap.add_argument("--no-text", action="store_true", help="skip downloading filing text")
     a = ap.parse_args()
+    print("sec_8k_collect v2 (8-K originals + amendments, main document, EX-99 fallback)", file=sys.stderr)
     import os; os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
 
     rows = {}
