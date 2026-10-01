@@ -17,10 +17,10 @@ events: n=65  env {'UND': 43, 'ONPREM': 18, 'CLOUD': 4}
   root cause by environment {'CLOUD': {'OTHER': 3, 'THIRD_PARTY': 1}, 'ONPREM': {'OTHER': 17, 'THIRD_PARTY': 1}, 'UND': {'OTHER': 34, 'THIRD_PARTY': 5, 'INSIDER': 3, 'UNPATCHED': 1}}
 
 SEC events vs VCDB events (hand rule B), Fisher exact test:
-  determinable: SEC 22/65 = 34%  VCDB 56/201 = 28%  p = 0.35
+  determinable: SEC 22/65 = 34%  VCDB 56/202 = 28%  p = 0.35
   cloud_share_of_determinable: SEC 4/22 = 18%  VCDB 36/56 = 64%  p = 0.00033
-  root_cause_stated: SEC 11/65 = 17%  VCDB 108/201 = 54%  p = 1.3e-07
-  misconfiguration: SEC 0/65 = 0%  VCDB 45/201 = 22%  p = 1.5e-06
+  root_cause_stated: SEC 11/65 = 17%  VCDB 102/202 = 50%  p = 1.3e-06
+  misconfiguration: SEC 0/65 = 0%  VCDB 44/202 = 22%  p = 1.6e-06
 
 Dollar figures disclosed for 7 incidents:
   loanDepot, Inc.: $12,000,000-$17,000,000 (Q1 2024 expenses net of insurance)

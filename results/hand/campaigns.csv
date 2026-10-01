@@ -715,7 +715,30 @@ MOVEIT,Teachers Insurance and Annuity Association of America,2023,narrative
 MOVEIT,UNIVERSITY OF THE SOUTHWEST,2023,narrative
 MOVEIT,NORTH IOWA AREA COMMUNITY COLLEGE,2023,narrative
 MOVEIT,SANDHILLS COMMUNITY COLLEGE,2023,narrative
-SFSE,TransUnion,2019,press attribution
+DRIFT,Dynatrace,2025,narrative
+DRIFT,Zscaler,2025,narrative
+DRIFT,Rubrik,2025,narrative
+DRIFT,Fastly,2025,narrative
+DRIFT,Elastic,2025,narrative
+DRIFT,Pagerduty,2025,narrative
+DRIFT,Palo Alto Networks,2025,narrative
+DRIFT,Workday,2025,narrative
+DRIFT,Toast,2025,narrative
+DRIFT,Avalara,2025,narrative
+DRIFT,BeyondTrust,2025,narrative
+DRIFT,Esker,2025,narrative
+DRIFT,Cato Networks,2025,narrative
+DRIFT,"""AppFolio, Inc.""",2025,narrative
+DRIFT,Tanium,2025,narrative
+DRIFT,PowerSchool,2025,narrative
+DRIFT,Nutanix,2025,narrative
+DRIFT,CyberArk,2025,narrative
+DRIFT,Tenable,2025,narrative
+DRIFT,Cloudflare,2025,narrative
+DRIFT,Jfrog,2025,narrative
+DRIFT,Bugcrowd,2025,narrative
+DRIFT,Proofpoint,2025,narrative
+DRIFT,Qualys,2025,narrative
 SFSE,Houghton Mifflin Harcourt (HMH),2025,narrative
 SFSE,Google,2025,narrative
 SFSE,Marriott,2025,narrative
@@ -759,30 +782,6 @@ SFSE,Walgreens,2025,narrative
 SFSE,McDonalds,2025,narrative
 SFSE,Albertsons,2025,narrative
 SFSE,TransUnion,2025,press attribution
-DRIFT,Dynatrace,2025,narrative
-DRIFT,Zscaler,2025,narrative
-DRIFT,Rubrik,2025,narrative
-DRIFT,Fastly,2025,narrative
-DRIFT,Elastic,2025,narrative
-DRIFT,Pagerduty,2025,narrative
-DRIFT,Palo Alto Networks,2025,narrative
-DRIFT,Workday,2025,narrative
-DRIFT,Toast,2025,narrative
-DRIFT,Avalara,2025,narrative
-DRIFT,BeyondTrust,2025,narrative
-DRIFT,Esker,2025,narrative
-DRIFT,Cato Networks,2025,narrative
-DRIFT,"""AppFolio, Inc.""",2025,narrative
-DRIFT,Tanium,2025,narrative
-DRIFT,PowerSchool,2025,narrative
-DRIFT,Nutanix,2025,narrative
-DRIFT,CyberArk,2025,narrative
-DRIFT,Tenable,2025,narrative
-DRIFT,Cloudflare,2025,narrative
-DRIFT,Jfrog,2025,narrative
-DRIFT,Bugcrowd,2025,narrative
-DRIFT,Proofpoint,2025,narrative
-DRIFT,Qualys,2025,narrative
 EBS,Dartmouth College,2025,narrative
 EBS,University of Pennsylvania,2025,narrative
 EBS,Envoy Air,2025,narrative

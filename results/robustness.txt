@@ -1,0 +1,41 @@
+1. Environment stated, by root cause (rule B, 202 events)
+   PHYSICAL       3/  3 = 100%
+   THIRD_PARTY    1/ 10 = 10%
+   INSIDER        2/ 16 = 12%
+   UNPATCHED      3/  7 = 43%
+   MISCONFIG     21/ 44 = 48%
+   CREDENTIAL     6/ 22 = 27%
+   OTHER         20/100 = 20%
+   misconfiguration 21/44 vs other causes 35/158, Fisher p = 0.002
+
+2. Misconfiguration share over all 202 events if undetermined events were assigned
+   known only: cloud 19/36 = 53%, on-prem 2/20 = 10%
+   undetermined: 23 misconfiguration, 123 other
+   25% of undetermined events cloud (independent of cause): cloud 34%, on-prem 15%
+   50% of undetermined events cloud (independent of cause): cloud 28%, on-prem 14%
+   75% of undetermined events cloud (independent of cause): cloud 25%, on-prem 14%
+   with other causes split 50/50, the shares are equal if only 12% of undetermined misconfiguration events are cloud
+
+3. Sensitivity of the rule-B test
+   baseline                   cloud 36 on-prem 20  chi2 17.85  p 0.0017  V 0.565  misconfig 19/36 vs 2/20
+   customer_managed_unknown   cloud 36 on-prem 18  chi2 17.58  p 0.0018  V 0.571  misconfig 19/36 vs 2/18
+   weak_onprem_unknown        cloud 36 on-prem 14  chi2 20.82  p 0.0007  V 0.645  misconfig 19/36 vs 1/14
+   both                       cloud 36 on-prem 12  chi2 20.18  p 0.0008  V 0.648  misconfig 19/36 vs 1/12
+   weak on-prem hand codes (6): Provider PACS servers exposed to internet; Server on dealership network accessed; Attackers breached company network and build process; Unusual activity on its networks; Ransomware actors gained access to company network; Computer network hacked
+   victim records, rule A: {'CLOUD': 31, 'ONPREM': 720}; without MOVEit: {'CLOUD': 31, 'ONPREM': 4}
+
+   SEC: 17 of 18 on-prem codes rest on network/servers/systems only; recoded, environment stated for 5/65, cloud 4/5
+
+4. SEC events by disclosure item
+   item_1_05       n=40  environment stated 12 (30%), cause stated 7 (18%)
+   item_8_01_only  n=25  environment stated 10 (40%), cause stated 4 (16%)
+
+5. Sample size to detect a root-cause share of 25% vs 10% (80% power, alpha 0.05, equal groups)
+   100 classifiable events per environment, 200 in all
+   at VCDB's 28% determinability: 722 independent events, about 25.0 years of VCDB at the 2019-2025 rate
+   with the observed split (10% of events known on-premises), 1010 events, about 35.0 years of VCDB
+   at SEC's 34% determinability: 591 events, about 18.5 years of 8-K filings at the 2024-2025 rate
+
+6. SEC recall against Debevoise & Plimpton's count (Dec 18, 2023 - Dec 31, 2024)
+   Item 1.05 companies: ours 26, theirs 26
+   Item 8.01 companies in 2024: ours 19 (first filing 8.01; 17 never moved to 1.05), theirs 34 -> recall about 56%

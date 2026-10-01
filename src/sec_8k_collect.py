@@ -32,6 +32,16 @@ QUERIES = [
     ('"Item 1.05"', "1.05"),
     ('"cybersecurity incident"', "1.05"),
     ('"cybersecurity incident"', "8.01"),        # voluntary / non-material disclosures
+    # v3: wider net for Item 8.01. The v2 phrase alone found about 56% of the Item 8.01
+    # incident disclosures that Debevoise & Plimpton counted for 2024. Each extra phrase
+    # adds false positives, which the screening step removes by hand.
+    ('"cyber incident"', "8.01"),
+    ('"cybersecurity event"', "8.01"),
+    ('"cyber-attack"', "8.01"),
+    ('"cyberattack"', "8.01"),
+    ('"ransomware"', "8.01"),
+    ('"unauthorized access" "information technology systems"', "8.01"),
+    ('"data security incident"', "8.01"),
 ]
 PAUSE = 0.15   # SEC fair-access limit is 10 requests per second
 
@@ -106,7 +116,7 @@ def main():
     ap.add_argument("--out", default="data/sec/sec_8k_filings.csv")
     ap.add_argument("--no-text", action="store_true", help="skip downloading filing text")
     a = ap.parse_args()
-    print("sec_8k_collect v2 (8-K originals + amendments, main document, EX-99 fallback)", file=sys.stderr)
+    print("sec_8k_collect v3 (wider Item 8.01 phrases; 8-K originals + amendments, main document, EX-99 fallback)", file=sys.stderr)
     import os; os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
 
     rows = {}

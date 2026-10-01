@@ -90,15 +90,19 @@ def main():
            "events": summarize(ev, "root"),
            "events_alt_order": summarize(ev, "alt")["root_cause"]}
 
-    # comparison with VCDB under the hand rule (B): 201 events, environment from structured
-    # fields plus hand coding of the 162 events the fields left unclassified
+    # comparison with VCDB under the hand rule (B): 202 events, environment from structured
+    # fields plus hand coding of the 163 events the fields left unclassified
     try:
         a = json.load(open("results/analysis_results.json"))
         vn = a["B_hand_events"]
         vt = a["B_hand_table"]
         vcl, vop = sum(vt["CLOUD"].values()), sum(vt["ONPREM"].values())
-        vroot = collections.Counter(r["hand_root_cause"] for r in
-                                    csv.DictReader(open("results/hand/events_hand.csv", encoding="utf-8")))
+        # root causes as in Tables IV-V: the coder's codes for hand-coded events,
+        # structured-field codes (with campaign codes) for the rest
+        hc = {r["incident_id"]: r for r in csv.DictReader(open("data/hand_codes/hand_codes_all.csv", encoding="utf-8"))}
+        vroot = collections.Counter(
+            hc[r["incident_id"]]["coderA_root_cause"] if r["hand_infra"] == "REVIEW" else r["hand_root_cause"]
+            for r in csv.DictReader(open("results/hand/events_hand.csv", encoding="utf-8")))
         s = res["events"]
         sd, sn = s["determinable"], s["n"]
         scl, sop = s["env"].get("CLOUD", 0), s["env"].get("ONPREM", 0)

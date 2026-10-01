@@ -1,12 +1,12 @@
 # Codebook for independent second coding
 
-Thank you for helping. You will code 162 public breach records. It takes about 3–4 hours; you can stop and resume at any time.
+Thank you for helping. There are two sheets: `second_coder_sheet.csv` (163 public breach records from VCDB, about 3–4 hours) and `sec_second_coder_sheet.csv` (68 incidents disclosed to the SEC on Form 8-K, about 1–2 hours). You can stop and resume at any time.
 
 **Please do this without looking at any other coder's codes.** Work only from `second_coder_sheet.csv`, which contains no codes. Agreement between independent coders is what the paper reports, so it only counts if your judgments are your own.
 
 ## What you do for each row
 
-Read the `summary` column. If it is unclear, open the links in `reference`. Then fill three columns:
+Read the `summary` column (VCDB sheet) or the `incident_text` column (SEC sheet). On the VCDB sheet, open the links in `reference` if the summary is unclear. On the SEC sheet, use only the filing text; open `url` only if `incident_text` is cut off. Then fill three columns:
 
 | Column | What to enter |
 |---|---|
@@ -48,10 +48,16 @@ Notes:
 - "Email accounts were accessed" with no method stated is `OTHER`. It is `CREDENTIAL` only if phishing, stolen passwords or similar is mentioned.
 - Accidental disclosure by staff (wrong email recipient, publishing data by mistake) is `OTHER`, not `INSIDER`. `INSIDER` means deliberate misuse.
 
+## SEC sheet notes
+
+- Code from the filing's own words. Do not use press coverage or outside knowledge of the incident.
+- When a filing says only that the attacker reached "the network", "servers" or "internal systems", record that phrase in `coderB_basis`, so the analysis can test the strict rule as well as the loose one.
+
 ## When you finish
 
 Save the file and send it back. The agreement score (Cohen's κ) is computed with:
 
 ```bash
-python3 src/kappa.py data/hand_codes/hand_codes_all_162.csv second_coder_sheet.csv
+python3 src/kappa.py data/hand_codes/hand_codes_all.csv second_coder_sheet.csv
+python3 src/kappa.py data/sec/sec_incident_codes.csv sec_second_coder_sheet.csv
 ```

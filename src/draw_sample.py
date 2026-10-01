@@ -13,7 +13,12 @@ CODED = "data/hand_codes/hand_sample_coded.csv"
 QUOTA = {"2019": 26, "2020": 25, "2021": 6, "2024": 2, "2025": 1}
 SEED = 2026
 
-pool = [r for r in csv.DictReader(open(EVENTS, encoding="utf-8")) if r["hand_infra"] == "REVIEW"]
+# Added to the pool after the sample was drawn: a 2019 TransUnion record that an earlier
+# version of hand_merge.py wrongly merged into the 2025 Salesforce wave. It is hand-coded
+# with the other unsampled events; excluding it here reproduces the original draw.
+ADDED_AFTER_DRAW = {"4041a7b0-246a-11eb-b042-01be07ea3379"}
+pool = [r for r in csv.DictReader(open(EVENTS, encoding="utf-8"))
+        if r["hand_infra"] == "REVIEW" and r["incident_id"] not in ADDED_AFTER_DRAW]
 random.seed(SEED)
 ids = []
 for year, q in QUOTA.items():

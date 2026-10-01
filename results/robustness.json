@@ -1,0 +1,214 @@
+{
+  "detection_by_cause": {
+    "PHYSICAL": [
+      3,
+      3
+    ],
+    "THIRD_PARTY": [
+      1,
+      10
+    ],
+    "INSIDER": [
+      2,
+      16
+    ],
+    "UNPATCHED": [
+      3,
+      7
+    ],
+    "MISCONFIG": [
+      21,
+      44
+    ],
+    "CREDENTIAL": [
+      6,
+      22
+    ],
+    "OTHER": [
+      20,
+      100
+    ]
+  },
+  "detection_misconfig_vs_rest": {
+    "misconfig": [
+      21,
+      44
+    ],
+    "rest": [
+      35,
+      158
+    ],
+    "fisher_p": 0.002
+  },
+  "bounding": {
+    "known": {
+      "cloud": [
+        19,
+        36
+      ],
+      "onprem": [
+        2,
+        20
+      ]
+    },
+    "undetermined": {
+      "misconfig": 23,
+      "other": 123
+    },
+    "independent_q0.25": [
+      0.341,
+      0.149
+    ],
+    "independent_q0.5": [
+      0.28,
+      0.145
+    ],
+    "independent_q0.75": [
+      0.249,
+      0.137
+    ],
+    "break_even_cloud_share_of_undetermined_misconfig": 0.124
+  },
+  "sensitivity": {
+    "baseline": {
+      "cloud": 36,
+      "onprem": 20,
+      "chi2": 17.85,
+      "p": 0.0017,
+      "V": 0.565,
+      "misconfig_cloud": [
+        19,
+        36
+      ],
+      "misconfig_onprem": [
+        2,
+        20
+      ]
+    },
+    "customer_managed_unknown": {
+      "cloud": 36,
+      "onprem": 18,
+      "chi2": 17.58,
+      "p": 0.0018,
+      "V": 0.571,
+      "misconfig_cloud": [
+        19,
+        36
+      ],
+      "misconfig_onprem": [
+        2,
+        18
+      ]
+    },
+    "weak_onprem_unknown": {
+      "cloud": 36,
+      "onprem": 14,
+      "chi2": 20.82,
+      "p": 0.0007,
+      "V": 0.645,
+      "misconfig_cloud": [
+        19,
+        36
+      ],
+      "misconfig_onprem": [
+        1,
+        14
+      ]
+    },
+    "both": {
+      "cloud": 36,
+      "onprem": 12,
+      "chi2": 20.18,
+      "p": 0.0008,
+      "V": 0.648,
+      "misconfig_cloud": [
+        19,
+        36
+      ],
+      "misconfig_onprem": [
+        1,
+        12
+      ]
+    }
+  },
+  "weak_onprem_vcdb": [
+    "Provider PACS servers exposed to internet",
+    "Server on dealership network accessed",
+    "Attackers breached company network and build process",
+    "Unusual activity on its networks",
+    "Ransomware actors gained access to company network",
+    "Computer network hacked"
+  ],
+  "victims_rule_A": {
+    "CLOUD": 31,
+    "ONPREM": 720
+  },
+  "victims_rule_A_without_moveit": {
+    "CLOUD": 31,
+    "ONPREM": 4
+  },
+  "sec_weak_onprem": {
+    "n_events": 65,
+    "onprem": 18,
+    "weak": 17,
+    "companies": [
+      "Fidelity National Financial, Inc.",
+      "SouthState Corp",
+      "RADIANT LOGISTICS, INC",
+      "B. Riley Financial, Inc.",
+      "BRANDYWINE REALTY TRUST",
+      "KULICKE & SOFFA INDUSTRIES INC",
+      "ADT Inc.",
+      "MICROCHIP TECHNOLOGY INC",
+      "American Water Works Company, Inc.",
+      "NEWPARK RESOURCES INC",
+      "iLearningEngines, Inc.",
+      "LEE ENTERPRISES, Inc",
+      "Global Crossing Airlines Group Inc.",
+      "AFLAC INC",
+      "Ingram Micro Holding Corp",
+      "Inotiv, Inc.",
+      "JEWETT CAMERON TRADING CO LTD"
+    ],
+    "stated_after": [
+      5,
+      65
+    ],
+    "cloud_share_after": [
+      4,
+      5
+    ]
+  },
+  "sec_by_item": {
+    "item_1_05": {
+      "n": 40,
+      "env_stated": 12,
+      "cause_stated": 7
+    },
+    "item_8_01_only": {
+      "n": 25,
+      "env_stated": 10,
+      "cause_stated": 4
+    }
+  },
+  "sample_size": {
+    "n_per_group": 100,
+    "classifiable_needed": 200,
+    "events_needed_vcdb": 722,
+    "events_needed_sec": 591,
+    "years_vcdb": 25.0,
+    "years_sec": 18.5,
+    "observed_split_events_needed_vcdb": 1010,
+    "observed_split_years_vcdb": 35.0,
+    "vcdb_onprem_known_share": 0.099
+  },
+  "sec_recall": {
+    "external": {
+      "item_1_05": 26,
+      "item_8_01_2024": 34
+    },
+    "ours_item_1_05": 26,
+    "ours_item_8_01_only": 17,
+    "ours_item_8_01_any": 19
+  }
+}

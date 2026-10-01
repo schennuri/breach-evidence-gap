@@ -30,6 +30,7 @@ pip install -r requirements.txt     # numpy, scipy
 | 6 | `src/spi_sensitivity.py` | SPI composites, one-at-a-time, break-even and Dirichlet weight sensitivity | `results/spi_sensitivity.txt` |
 | 7 | `src/spi_data_weights.py` | SPI weights derived from observed root-cause frequencies | `results/spi_data_weights.txt` |
 | 8 | `src/sec_analysis.py` | Summarizes the hand-coded SEC Form 8-K incidents and compares them with VCDB | `results/sec/` |
+| 9 | `src/robustness.py` | Detection-by-cause test, bounding, recoding sensitivity, SEC strict rule and recall, sample size | `results/robustness.*` |
 
 ## Where each result in the paper comes from
 
@@ -39,20 +40,20 @@ pip install -r requirements.txt     # numpy, scipy
 | Records by year, Fig. 2 | `results/automatic/coding_sheet.csv` (`year`) and the VCDB snapshot |
 | Event vs victim counting, Fig. 3 | `results/automatic/coding_sheet.csv` (`auto_infra`, `campaign_size`) |
 | Named campaigns, Table III | `results/hand/campaigns.csv` |
-| Hand coding, κ, Wilson CI (Section IV-C) | `results/analysis_results.json` (`sample60_*`, `all162_*`) |
+| Hand coding, κ, Wilson CI (Section IV-C) | `results/analysis_results.json` (`sample60_*`, `allhand_*`) |
 | Root causes (Section IV-D), Fig. 4 | `results/analysis_results.json` (`A_auto_order`, `B_hand_order`) |
 | Environment × root cause (Section IV-E), Fig. 5, Table IV | `results/analysis_results.json` (`*_table`, `*_test`) |
-| Alternative ordering (Section IV-F), Table V | `results/analysis_results.json` (`*_order`) |
-| Impact data (Section IV-G) | `results/analysis_results.json` (`n_*`) |
-| SEC Form 8-K disclosures (Section IV-H), Table VI | `results/sec/sec_results.json`, `results/sec/sec_summary.txt` |
-| SPI scores and sensitivity (Appendix A), Tables VII and IX, Figs. 6 and 7 | `results/spi_sensitivity.txt` |
-| Data-informed SPI weights (Appendix A), Table VIII | `results/spi_data_weights.txt` |
+| Alternative ordering (Section IV-G), Table VI | `results/analysis_results.json` (`*_order`) |
+| Impact data (Section IV-H) | `results/analysis_results.json` (`n_*`) |
+| Robustness: detection by cause, bounding, recoding sensitivity (Section IV-F), Table V; SEC strict rule, recall and sample size (Sections IV-I, V) | `results/robustness.json`, `results/robustness.txt` |
+| SEC Form 8-K disclosures (Section IV-I), Table VII | `results/sec/sec_results.json`, `results/sec/sec_summary.txt` |
+| Security Posture Index (not in the submitted paper; kept for a separate practitioner write-up) | `results/spi_sensitivity.txt`, `results/spi_data_weights.txt` |
 
-Confidence intervals and power for the misconfiguration shares (Section IV-E) come from `src/power.py`, written to `results/power.txt`.
+Confidence intervals for the misconfiguration shares (Section IV-E) come from `src/power.py`, written to `results/power.txt`.
 
 ## Hand-coded data
 
-`data/hand_codes/hand_codes_all_162.csv` holds every hand-rule event that structured fields could not classify (162 events), with the hand-assigned environment (`coderA_infra`), root cause (`coderA_root_cause`) and the text basis for each decision (`coderA_basis`), alongside the automated codes. `in_stratified_sample = Y` marks the 60 events of the original stratified sample, which `src/draw_sample.py` reproduces. The analysis uses all 162. Coding was done by a single coder with language-model assistance in reading the narratives, as stated in the paper.
+`data/hand_codes/hand_codes_all.csv` holds every hand-rule event that structured fields could not classify (163 events), with the hand-assigned environment (`coderA_infra`), root cause (`coderA_root_cause`) and the text basis for each decision (`coderA_basis`), alongside the automated codes. `in_stratified_sample = Y` marks the 60 events of the original stratified sample, which `src/draw_sample.py` reproduces. The analysis uses all 163. One of them, a 2019 TransUnion record, was added after the sample was drawn (an earlier version of `hand_merge.py` wrongly merged it into the 2025 Salesforce wave); `draw_sample.py` excludes it so the original draw is reproduced. Coding was done by a single coder with language-model assistance in reading the narratives, as stated in the paper.
 
 `data/hand_codes/hand_sample_coded.csv` is the original 60-event sample on its own. `data/hand_codes/hand_sample_blank_for_second_coder.csv` is that sample with the codes removed, for independent re-coding.
 
@@ -60,7 +61,7 @@ Campaign attribution rules are in `src/hand_merge.py`. Five victims of the 2025 
 
 ## Independent second coding
 
-`data/second_coder/` holds a codebook and a blank, shuffled sheet of the 162 hand-coded events for an independent second coder. `src/kappa.py` compares the two coders and lists disagreements for adjudication.
+`data/second_coder/` holds a codebook and a blank, shuffled sheet of the 163 hand-coded VCDB events, and a sheet of the 68 SEC incidents, for an independent second coder. `src/kappa.py` compares the two coders and lists disagreements for adjudication.
 
 ## SEC Form 8-K incidents
 
@@ -71,7 +72,7 @@ A second source: cybersecurity incident disclosures that U.S. public companies f
 | `src/sec_8k_collect.py` | Collector. Queries EDGAR full-text search for Item 1.05 filings and Item 8.01 filings that mention a cybersecurity incident, then downloads each filing's text |
 | `data/sec/sec_8k_filings.csv` | Collector output used in the paper: 206 filings from 139 companies |
 | `data/sec/sec_screening.csv` | One row per filing: first disclosure of an incident, update of an earlier incident, or excluded (with the reason) |
-| `results/sec/SEC_8K_incidents_vs_VCDB.xlsx` | The SEC results as a workbook: summary and Table VI (formulas over the codes), incidents, disclosed costs, judgment calls to review, and the screening log |
+| `results/sec/SEC_8K_incidents_vs_VCDB.xlsx` | The SEC results as a workbook: summary and Table VII (formulas over the codes), incidents, disclosed costs, judgment calls to review, and the screening log |
 | `data/sec/sec_incident_codes.csv` | One row per incident (68), hand-coded with the same codebook as VCDB: environment, root cause, alternative-order root cause, campaign, text basis, and any dollar figure disclosed |
 
 Most Item 8.01 hits are not incidents: the search phrase appears in the risk-factor boilerplate of dividend, offering and merger announcements. `sec_screening.csv` records every such exclusion.

@@ -35,7 +35,9 @@ def campaign(r):
     if "drift" in t or "salesloft" in t: return "DRIFT", "narrative"
     if "e-business" in t or (("clop" in t or "cl0p" in t) and "oracle" in t): return "EBS", "narrative"
     if "shinyhunters" in t or "lapsus" in t or "salesforce" in t: return "SFSE", "narrative"
-    if r["victim"] in SFSE_BY_PRESS: return "SFSE", "press attribution"
+    # press attribution covers only the 2025 wave; an earlier record for the same company
+    # (TransUnion, 2019 credential stuffing) is a separate incident
+    if r["victim"] in SFSE_BY_PRESS and r["year"] == "2025": return "SFSE", "press attribution"
     return "", ""
 
 def main():

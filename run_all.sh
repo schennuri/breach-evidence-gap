@@ -42,4 +42,7 @@ python3 src/spi_data_weights.py | tee results/spi_data_weights.txt
 echo "== 8. SEC Form 8-K incidents (hand-coded; collected with src/sec_8k_collect.py)"
 python3 src/sec_analysis.py
 
+echo "== 9. Robustness: detection, bounding, sensitivity, SEC recall, sample size"
+python3 src/robustness.py
+
 echo "Done. Outputs are in results/."
