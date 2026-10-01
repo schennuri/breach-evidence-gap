@@ -51,6 +51,10 @@ Confidence intervals and power for the misconfiguration shares (Section V.E) com
 
 Campaign attribution rules are in `src/hand_merge.py`. Five victims of the 2025 Salesforce social-engineering wave are assigned from press attribution rather than their VCDB narrative; they are listed in `SFSE_BY_PRESS` and flagged in `campaigns.csv`.
 
+## Independent second coding
+
+`data/second_coder/` holds a codebook and a blank, shuffled sheet of the 162 hand-coded events for an independent second coder. `src/kappa.py` compares the two coders and lists disagreements for adjudication.
+
 ## SEC 8-K extension (in progress)
 
 `src/sec_8k_collect.py` collects Form 8-K cybersecurity incident disclosures from December 18, 2023 (when Item 1.05 took effect) to December 31, 2025, from SEC EDGAR full-text search. It writes a coding sheet with the incident text and keyword hints but no codes. SEC blocks many cloud and proxy networks, so run it from an ordinary connection:
