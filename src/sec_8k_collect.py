@@ -27,7 +27,10 @@ SEARCH = "https://efts.sec.gov/LATEST/search-index"
 ARCHIVE = "https://www.sec.gov/Archives/edgar/data/{cik}/{adsh}/{doc}"
 START, END = "2023-12-18", "2025-12-31"   # Item 1.05 effective Dec 18, 2023
 QUERIES = [
-    ('"Item 1.05"', None),                       # material cybersecurity incidents
+    # (search phrase, item the filing must report). Filtering on the filing's own item
+    # list, not on the phrase, catches 1.05 filings whatever wording they use.
+    ('"Item 1.05"', "1.05"),
+    ('"cybersecurity incident"', "1.05"),
     ('"cybersecurity incident"', "8.01"),        # voluntary / non-material disclosures
 ]
 PAUSE = 0.15   # SEC fair-access limit is 10 requests per second
@@ -46,8 +49,10 @@ def get(url, ua):
 def search(q, ua):
     hits, start = [], 0
     while True:
-        params = {"q": q, "forms": "8-K,8-K/A", "dateRange": "custom",
-                  "startdt": START, "enddt": END, "from": start}
+        # NOTE: forms must be "8-K" alone. EDGAR returns originals AND amendments for it;
+        # a list such as "8-K,8-K/A" silently returns amendments only. Adding
+        # dateRange=custom makes the endpoint fail, so dates are also checked below.
+        params = {"q": q, "forms": "8-K", "startdt": START, "enddt": END, "from": start}
         data = json.loads(get(SEARCH + "?" + urllib.parse.urlencode(params), ua))
         page = data.get("hits", {}).get("hits", [])
         hits += page
@@ -62,6 +67,24 @@ def text_of(doc_html):
     t = re.sub(r"(?is)<(script|style).*?</\1>", " ", doc_html)
     t = re.sub(r"(?s)<[^>]+>", " ", t)
     return re.sub(r"\s+", " ", html.unescape(t)).strip()
+
+def filing_documents(cik, adsh, ua):
+    """Main 8-K document and EX-99 exhibits, from the filing index page."""
+    idx = f"https://www.sec.gov/Archives/edgar/data/{cik}/{adsh.replace('-', '')}/{adsh}-index.htm"
+    page = get(idx, ua)
+    main, exhibits = None, []
+    for row in re.findall(r"(?is)<tr.*?</tr>", page):
+        link = re.search(r'href="(?:/ix\?doc=)?(/Archives/edgar/data/[^"]+\.htm)"', row)
+        cells = [text_of(c) for c in re.findall(r"(?is)<td.*?</td>", row)]
+        if not link or len(cells) < 4:
+            continue
+        doc_type = cells[3].upper()
+        url = "https://www.sec.gov" + link.group(1)
+        if doc_type in ("8-K", "8-K/A") and main is None:
+            main = url
+        elif doc_type.startswith("EX-99"):
+            exhibits.append(url)
+    return main, exhibits
 
 def incident_section(t):
     """Text from 'Item 1.05' (or 'Item 8.01') up to the next Item heading or signature."""
@@ -95,7 +118,7 @@ def main():
             if not item_filter and "1.05" not in items:
                 continue
             adsh, doc = adsh_doc.split(":", 1)
-            if adsh in rows:
+            if adsh in rows or not (START <= s.get("file_date", "") <= END):
                 continue
             cik = (s.get("ciks") or [""])[0].lstrip("0")
             rows[adsh] = {
@@ -116,7 +139,14 @@ def main():
     if not a.no_text:
         for i, r in enumerate(out, 1):
             try:
+                main, exhibits = filing_documents(r["cik"], r["accession"], a.ua)
+                r["url"] = main or r["url"]
                 sec = incident_section(text_of(get(r["url"], a.ua)))
+                # short item text usually means "see the attached press release"
+                if len(sec) < 800 and exhibits:
+                    time.sleep(PAUSE)
+                    sec += " [EX-99] " + text_of(get(exhibits[0], a.ua))[:5000]
+                    r["exhibit_url"] = exhibits[0]
             except Exception as e:
                 sec = f"[download failed: {e}]"
             r["incident_text"] = sec
@@ -127,7 +157,9 @@ def main():
 
     coding = ["coderA_infra", "coderA_root_cause", "coderA_campaign", "coderA_basis",
               "disclosed_cost_usd", "notes"]
-    fields = list(out[0].keys()) + coding if out else ["empty"]
+    fields = (["accession", "cik", "company", "form", "file_date", "items", "disclosure_type",
+               "url", "exhibit_url", "is_first_disclosure", "first_accession", "incident_text"]
+              + list(CLUES) + coding) if out else ["empty"]
     with open(a.out, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
         w.writeheader()
