@@ -1,0 +1,21 @@
+Composite SPI (assigned weights): {'Cloud': 0.8474, 'On-prem': 0.6692, 'Hybrid': 0.8618, 'Hybrid (bounded)': 0.8554}
+Composite SPI (equal weights):    {'Cloud': 0.8386, 'On-prem': 0.6714, 'Hybrid': 0.8586, 'Hybrid (bounded)': 0.85}
+
+One-at-a-time: hybrid minus cloud lead, min..max over 0x/0.5x/1.5x/2x
+  Data confidentiality         0.0110 .. 0.0168  ranking unchanged: True
+  Access control / IAM         0.0112 .. 0.0167  ranking unchanged: True
+  Patch management             0.0028 .. 0.0305  ranking unchanged: True
+  Physical security            0.0089 .. 0.0216  ranking unchanged: True
+  Incident response            0.0121 .. 0.0162  ranking unchanged: True
+  Compliance auditability      0.0136 .. 0.0150  ranking unchanged: True
+  Insider threat resilience    0.0016 .. 0.0249  ranking unchanged: True
+
+Break-even weights (cloud overtakes hybrid):
+  Patch management: weight >= 0.30 (baseline 0.16)
+  Physical security: weight >= 0.42 (baseline 0.14)
+
+Dirichlet sampling around baseline (100,000 draws), % of draws ranked first:
+  low uncertainty  {'Cloud': 0.3, 'On-prem': 0.0, 'Hybrid': 99.7}
+  moderate         {'Cloud': 10.5, 'On-prem': 0.0, 'Hybrid': 89.5}
+  high             {'Cloud': 24.2, 'On-prem': 0.0, 'Hybrid': 75.8}
+Uniform on simplex (100,000 draws): {'Cloud': 15.3, 'On-prem': 0.0, 'Hybrid': 84.7} | cloud above on-prem in 99.9%

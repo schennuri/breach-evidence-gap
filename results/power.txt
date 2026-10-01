@@ -1,0 +1,8 @@
+Cloud: 19/36 = 52.8% misconfiguration (95% CI 37.0%-68.0%)
+On-prem: 2/12 = 16.7% misconfiguration (95% CI 4.7%-44.8%)
+Power at observed sizes (36 vs 12): 56%
+  20 events per environment: power 59%
+  25 events per environment: power 70%
+  30 events per environment: power 78%
+  35 events per environment: power 87%
+  40 events per environment: power 91%

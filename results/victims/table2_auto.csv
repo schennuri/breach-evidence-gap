@@ -1,0 +1,5 @@
+metric,CLOUD_n,CLOUD_mean,CLOUD_median,ONPREM_n,ONPREM_mean,ONPREM_median,HYBRID_n,HYBRID_mean,HYBRID_median
+detection_days,4,61.77,15.5,2,32.44,32.44,0,,
+containment_days,3,18.68,28,3,9.67,3,0,,
+loss_usd,0,,,0,,,0,,
+legal_regulatory_loss_pct,31,0.0,,720,0.0,,0,,

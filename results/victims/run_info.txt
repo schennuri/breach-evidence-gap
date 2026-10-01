@@ -1,0 +1,5 @@
+VCDB commit: f6f98c00f66ab35f5b49977a5852ce94a5bb31d1
+Run date: 2026-09-30
+Years: 2019-2025
+Min size band: 1001 to 10000
+Campaigns collapsed: False (min 5)

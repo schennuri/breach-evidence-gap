@@ -1,0 +1,156 @@
+{
+ "agree_auto_root_cause": [
+  0.833,
+  0.758
+ ],
+ "agree_auto_root_cause_alt": [
+  0.833,
+  0.756
+ ],
+ "sample_env": {
+  "UND": 51,
+  "ONPREM": 6,
+  "CLOUD": 3
+ },
+ "sample_determinable": [
+  9,
+  60,
+  0.081,
+  0.261
+ ],
+ "confusion_auto_vs_hand": {
+  "CREDENTIAL->OTHER": 2,
+  "CREDENTIAL->THIRD_PARTY": 1,
+  "UNPATCHED->MISCONFIG": 1,
+  "OTHER->THIRD_PARTY": 1,
+  "OTHER->CREDENTIAL": 1,
+  "THIRD_PARTY->MISCONFIG": 1,
+  "THIRD_PARTY->OTHER": 1,
+  "MISCONFIG->OTHER": 1,
+  "THIRD_PARTY->CREDENTIAL": 1
+ },
+ "A_auto_events": 239,
+ "A_auto_table": {
+  "CLOUD": {
+   "UNPATCHED": 1,
+   "MISCONFIG": 19,
+   "CREDENTIAL": 3,
+   "OTHER": 11
+  },
+  "ONPREM": {
+   "PHYSICAL": 1,
+   "INSIDER": 1,
+   "UNPATCHED": 1,
+   "MISCONFIG": 2,
+   "CREDENTIAL": 1,
+   "OTHER": 5
+  }
+ },
+ "A_auto_test": [
+  9.82,
+  0.0625,
+  0.467
+ ],
+ "A_auto_victim_weighted": {
+  "CLOUD": {
+   "UNPATCHED": 1,
+   "MISCONFIG": 19,
+   "CREDENTIAL": 3,
+   "OTHER": 11
+  },
+  "ONPREM": {
+   "PHYSICAL": 1,
+   "INSIDER": 1,
+   "UNPATCHED": 716,
+   "MISCONFIG": 2,
+   "CREDENTIAL": 1,
+   "OTHER": 5
+  }
+ },
+ "B_hand_events": 201,
+ "B_hand_table": {
+  "CLOUD": {
+   "THIRD_PARTY": 1,
+   "UNPATCHED": 1,
+   "MISCONFIG": 19,
+   "CREDENTIAL": 4,
+   "OTHER": 11
+  },
+  "ONPREM": {
+   "PHYSICAL": 1,
+   "INSIDER": 1,
+   "UNPATCHED": 2,
+   "MISCONFIG": 2,
+   "CREDENTIAL": 1,
+   "OTHER": 5
+  }
+ },
+ "B_hand_test": [
+  12.19,
+  0.0393,
+  0.504
+ ],
+ "B_hand_victim_weighted": {
+  "CLOUD": {
+   "THIRD_PARTY": 24,
+   "UNPATCHED": 1,
+   "MISCONFIG": 19,
+   "CREDENTIAL": 47,
+   "OTHER": 11
+  },
+  "ONPREM": {
+   "PHYSICAL": 1,
+   "INSIDER": 1,
+   "UNPATCHED": 729,
+   "MISCONFIG": 2,
+   "CREDENTIAL": 1,
+   "OTHER": 5
+  }
+ },
+ "A_auto_order": {
+  "primary": {
+   "PHYSICAL": 3,
+   "THIRD_PARTY": 11,
+   "INSIDER": 16,
+   "UNPATCHED": 9,
+   "MISCONFIG": 45,
+   "CREDENTIAL": 62,
+   "OTHER": 93
+  },
+  "alt": {
+   "PHYSICAL": 3,
+   "THIRD_PARTY": 4,
+   "INSIDER": 17,
+   "UNPATCHED": 10,
+   "MISCONFIG": 48,
+   "CREDENTIAL": 64,
+   "OTHER": 93
+  },
+  "changed": 7
+ },
+ "B_hand_order": {
+  "primary": {
+   "PHYSICAL": 3,
+   "THIRD_PARTY": 12,
+   "INSIDER": 16,
+   "UNPATCHED": 6,
+   "MISCONFIG": 45,
+   "CREDENTIAL": 26,
+   "OTHER": 93
+  },
+  "alt": {
+   "PHYSICAL": 3,
+   "THIRD_PARTY": 5,
+   "INSIDER": 17,
+   "UNPATCHED": 7,
+   "MISCONFIG": 48,
+   "CREDENTIAL": 28,
+   "OTHER": 93
+  },
+  "changed": 7
+ },
+ "n_detection_days": 32,
+ "n_containment_days": 21,
+ "n_loss_usd": 2,
+ "n_legal_reg": 0
+}

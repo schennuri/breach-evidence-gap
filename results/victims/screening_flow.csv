@@ -1,0 +1,12 @@
+step,count
+records_in_vcdb,10047
+outside_2019_2025,8404
+below_size_threshold_or_unknown,463
+not_confirmed_disclosure,151
+user_device_or_media_only,35
+eligible_before_campaign_collapse,994
+included,994
+included_auto_cloud,31
+included_auto_onprem,720
+included_auto_hybrid,0
+included_auto_review,243

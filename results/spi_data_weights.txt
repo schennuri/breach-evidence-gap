@@ -1,0 +1,6 @@
+assigned | root-cause counts: None | weights: {'conf': 0.18, 'iam': 0.17, 'patch': 0.16, 'phys': 0.14, 'ir': 0.13, 'comp': 0.12, 'insider': 0.1}
+    {'Cloud': 0.847, 'On-prem': 0.669, 'Hybrid (as assigned)': 0.862, 'Hybrid (bounded)': 0.855}
+event-weighted | root-cause counts: {'patch': 5, 'conf': 46, 'iam': 25, 'insider': 16, 'phys': 3} | weights: {'conf': 0.363, 'iam': 0.197, 'patch': 0.039, 'phys': 0.024, 'ir': 0.13, 'comp': 0.12, 'insider': 0.126}
+    {'Cloud': 0.826, 'On-prem': 0.683, 'Hybrid (as assigned)': 0.862, 'Hybrid (bounded)': 0.836}
+victim-weighted | root-cause counts: {'patch': 732, 'conf': 46, 'iam': 68, 'insider': 16, 'phys': 3} | weights: {'conf': 0.04, 'iam': 0.059, 'patch': 0.635, 'phys': 0.003, 'ir': 0.13, 'comp': 0.12, 'insider': 0.014}
+    {'Cloud': 0.881, 'On-prem': 0.608, 'Hybrid (as assigned)': 0.847, 'Hybrid (bounded)': 0.882}

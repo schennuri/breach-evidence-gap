@@ -1,0 +1,24 @@
+step,count
+records_in_vcdb,10047
+outside_2019_2025,8404
+below_size_threshold_or_unknown,463
+not_confirmed_disclosure,151
+user_device_or_media_only,35
+eligible_before_campaign_collapse,994
+collapsed_campaign: MOVEit vulnerability exploited.  Data stolen.,716
+"collapsed_campaign: ""There is clearly a lot of data to go through, and",26
+"collapsed_campaign: ""However, it was actually voice phishing (vishing)",2
+"collapsed_campaign: ""On August 23, 2025, Workday became aware of a sec",3
+"collapsed_campaign: ""On August 26, 2025, Toast was made aware of a sec",2
+"collapsed_campaign: ""Scattered Lapsus$ Hunters said Saturday it leaked",3
+"collapsed_campaign: ""On August 27, 2025, we identified a security issu",2
+"collapsed_campaign: ""Automotive giant Stellantis has just revealed tha",2
+"collapsed_campaign: ""On August 25, 2025, Esker became aware of a secur",2
+"collapsed_campaign: ""The University of Pennsylvania (Penn) has announc",3
+"collapsed_campaign: ""On or around August 22, 2025, AppFolio, Inc. (“Ap",2
+"collapsed_campaign: ""Cybercriminals have named nearly 30 organizations",2
+included,239
+included_auto_cloud,31
+included_auto_onprem,5
+included_auto_hybrid,0
+included_auto_review,203
