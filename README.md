@@ -35,7 +35,7 @@ pip install -r requirements.txt     # numpy, scipy
 | Event vs victim counting, Fig. 4 | `results/automatic/coding_sheet.csv` (`auto_infra`, `campaign_size`) |
 | Root causes, Fig. 5; Table VII | `results/analysis_results.json` (`A_auto_order`, `B_hand_order`) |
 | Named campaigns, Table V | `results/hand/campaigns.csv` |
-| Hand-coded sample, κ, Wilson CI (Section V.C) | `results/analysis_results.json` (`agree_*`, `sample_*`) |
+| Hand coding, κ, Wilson CI (Section V.C) | `results/analysis_results.json` (`sample60_*`, `all162_*`) |
 | Environment × root cause, Fig. 6; Table VI | `results/analysis_results.json` (`*_table`, `*_test`) |
 | Impact data (Section V.G) | `results/analysis_results.json` (`n_*`) |
 | Table I, Fig. 1, Fig. 7, Table VIII | `results/spi_sensitivity.txt` |
@@ -45,11 +45,21 @@ Confidence intervals and power for the misconfiguration shares (Section V.E) com
 
 ## Hand-coded data
 
-`data/hand_codes/hand_sample_coded.csv` holds the 60 sampled events with the hand-assigned environment (`coderA_infra`), root cause (`coderA_root_cause`) and the text basis for each decision (`coderA_basis`), alongside the automated codes. The sample was coded by a single coder with language-model assistance in reading the narratives, as stated in the paper.
+`data/hand_codes/hand_codes_all_162.csv` holds every hand-rule event that structured fields could not classify (162 events), with the hand-assigned environment (`coderA_infra`), root cause (`coderA_root_cause`) and the text basis for each decision (`coderA_basis`), alongside the automated codes. `in_stratified_sample = Y` marks the 60 events of the original stratified sample, which `src/draw_sample.py` reproduces. The analysis uses all 162. Coding was done by a single coder with language-model assistance in reading the narratives, as stated in the paper.
 
-`data/hand_codes/hand_sample_blank_for_second_coder.csv` is the same sample with the codes removed. Anyone wishing to replicate the coding can fill it in independently and compare.
+`data/hand_codes/hand_sample_coded.csv` is the original 60-event sample on its own. `data/hand_codes/hand_sample_blank_for_second_coder.csv` is that sample with the codes removed, for independent re-coding.
 
 Campaign attribution rules are in `src/hand_merge.py`. Five victims of the 2025 Salesforce social-engineering wave are assigned from press attribution rather than their VCDB narrative; they are listed in `SFSE_BY_PRESS` and flagged in `campaigns.csv`.
+
+## SEC 8-K extension (in progress)
+
+`src/sec_8k_collect.py` collects Form 8-K cybersecurity incident disclosures from December 18, 2023 (when Item 1.05 took effect) to December 31, 2025, from SEC EDGAR full-text search. It writes a coding sheet with the incident text and keyword hints but no codes. SEC blocks many cloud and proxy networks, so run it from an ordinary connection:
+
+```bash
+python3 src/sec_8k_collect.py --ua "Your Name your@email.com" --out data/sec/sec_8k_filings.csv
+```
+
+The SEC data are not yet part of the reported results.
 
 ## Notes on reproducibility
 

@@ -7,7 +7,7 @@ CAUSES = ["PHYSICAL","THIRD_PARTY","INSIDER","UNPATCHED","MISCONFIG","CREDENTIAL
 
 auto = list(csv.DictReader(open("results/automatic/coding_sheet.csv")))            # rule A: automatic merge
 hand = list(csv.DictReader(open("results/hand/events_hand.csv")))        # rule B: hand merge
-samp = {r["incident_id"]: r for r in csv.DictReader(open("data/hand_codes/hand_sample_coded.csv"))}
+samp = {r["incident_id"]: r for r in csv.DictReader(open("data/hand_codes/hand_codes_all_162.csv"))}   # all unclassified rule-B events, hand-coded
 res = {}
 
 def kappa(a, b):
@@ -16,8 +16,16 @@ def kappa(a, b):
     pe = sum((a.count(c) / n) * (b.count(c) / n) for c in cats)
     return po, (po - pe) / (1 - pe)
 
-# --- 1. automated vs hand root cause on the 60-event sample
-s = list(samp.values())
+# --- 1. automated vs hand root cause: stratified sample (60) and all hand-coded events (162)
+for label, subset in (("sample60", [r for r in samp.values() if r["in_stratified_sample"] == "Y"]),
+                      ("all162", list(samp.values()))):
+    po, k = kappa([r["auto_root_cause"] for r in subset], [r["coderA_root_cause"] for r in subset])
+    d = sum(r["coderA_infra"] != "UND" for r in subset)
+    ci = stats.binomtest(d, len(subset)).proportion_ci(method="wilson")
+    res[f"{label}_agreement"] = (round(po, 3), round(k, 3))
+    res[f"{label}_env"] = dict(C.Counter(r["coderA_infra"] for r in subset))
+    res[f"{label}_determinable"] = (d, len(subset), round(ci.low, 3), round(ci.high, 3))
+s = [r for r in samp.values() if r["in_stratified_sample"] == "Y"]
 for col in ("auto_root_cause", "auto_root_cause_alt"):
     po, k = kappa([r[col] for r in s], [r["coderA_root_cause"] for r in s])
     res[f"agree_{col}"] = (round(po, 3), round(k, 3))

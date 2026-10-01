@@ -8,7 +8,7 @@ S["Hybrid (bounded)"] = list(np.maximum(S["Cloud"], S["On-prem"]))
 w_assigned = np.array([.18,.17,.16,.14,.13,.12,.10])
 MAP = {"MISCONFIG":"conf","CREDENTIAL":"iam","UNPATCHED":"patch","PHYSICAL":"phys","INSIDER":"insider"}
 ev = list(csv.DictReader(open("results/hand/events_hand.csv")))
-samp = {r["incident_id"]: r for r in csv.DictReader(open("data/hand_codes/hand_sample_coded.csv"))}
+samp = {r["incident_id"]: r for r in csv.DictReader(open("data/hand_codes/hand_codes_all_162.csv"))}
 def rc(r):
     return samp[r["incident_id"]]["coderA_root_cause"] if r["incident_id"] in samp else r["hand_root_cause"]
 def weights(victim):

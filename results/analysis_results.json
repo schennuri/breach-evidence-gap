@@ -1,4 +1,34 @@
 {
+ "sample60_agreement": [
+  0.833,
+  0.758
+ ],
+ "sample60_env": {
+  "UND": 51,
+  "ONPREM": 6,
+  "CLOUD": 3
+ },
+ "sample60_determinable": [
+  9,
+  60,
+  0.081,
+  0.261
+ ],
+ "all162_agreement": [
+  0.84,
+  0.76
+ ],
+ "all162_env": {
+  "UND": 145,
+  "ONPREM": 14,
+  "CLOUD": 3
+ },
+ "all162_determinable": [
+  17,
+  162,
+  0.067,
+  0.162
+ ],
  "agree_auto_root_cause": [
   0.833,
   0.758
@@ -38,18 +68,18 @@
    "OTHER": 11
   },
   "ONPREM": {
-   "PHYSICAL": 1,
-   "INSIDER": 1,
+   "PHYSICAL": 3,
+   "INSIDER": 2,
    "UNPATCHED": 1,
    "MISCONFIG": 2,
-   "CREDENTIAL": 1,
-   "OTHER": 5
+   "CREDENTIAL": 2,
+   "OTHER": 9
   }
  },
  "A_auto_test": [
-  9.82,
-  0.0625,
-  0.467
+  16.22,
+  0.0025,
+  0.553
  ],
  "A_auto_victim_weighted": {
   "CLOUD": {
@@ -59,12 +89,12 @@
    "OTHER": 11
   },
   "ONPREM": {
-   "PHYSICAL": 1,
-   "INSIDER": 1,
+   "PHYSICAL": 3,
+   "INSIDER": 2,
    "UNPATCHED": 716,
    "MISCONFIG": 2,
-   "CREDENTIAL": 1,
-   "OTHER": 5
+   "CREDENTIAL": 2,
+   "OTHER": 9
   }
  },
  "B_hand_events": 201,
@@ -77,18 +107,18 @@
    "OTHER": 11
   },
   "ONPREM": {
-   "PHYSICAL": 1,
-   "INSIDER": 1,
+   "PHYSICAL": 3,
+   "INSIDER": 2,
    "UNPATCHED": 2,
    "MISCONFIG": 2,
-   "CREDENTIAL": 1,
-   "OTHER": 5
+   "CREDENTIAL": 2,
+   "OTHER": 9
   }
  },
  "B_hand_test": [
-  12.19,
-  0.0393,
-  0.504
+  17.85,
+  0.0015,
+  0.565
  ],
  "B_hand_victim_weighted": {
   "CLOUD": {
@@ -99,12 +129,12 @@
    "OTHER": 11
   },
   "ONPREM": {
-   "PHYSICAL": 1,
-   "INSIDER": 1,
+   "PHYSICAL": 3,
+   "INSIDER": 2,
    "UNPATCHED": 729,
    "MISCONFIG": 2,
-   "CREDENTIAL": 1,
-   "OTHER": 5
+   "CREDENTIAL": 2,
+   "OTHER": 9
   }
  },
  "A_auto_order": {
